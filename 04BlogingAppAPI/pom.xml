@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.blog.api</groupId>
-	<artifactId>03BlogingAppAPI</artifactId>
+	<artifactId>04BlogingAppAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>03BlogingAppAPI</name>
+	<name>04BlogingAppAPI</name>
 	<description>bloging app which have post user and categories and userroll</description>
 	<properties>
 		<java.version>17</java.version>
