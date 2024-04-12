@@ -1,59 +1,89 @@
 package com.blog.servicesImp;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.blog.dao.UserRepo;
 import com.blog.dto.UserDto;
+import com.blog.exceptions.ResourceNotFoundException;
 import com.blog.models.User;
 import com.blog.services.UserServices;
 
+@Service
 public class UserServImp implements UserServices {
 
+	
 	@Autowired
 	private UserRepo userRepo;
 	
 	@Override
 	public UserDto createUser(UserDto user) {
-		User fuser 
-		return null;
+		
+		User fuser = null;
+		fuser = dtoToUser(user);
+		User res = userRepo.save(fuser);
+		return userToDto(res);
 	}
 
 	@Override
-	public UserDto updateUser(UserDto user, Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public UserDto updateAbout(UserDto user, Integer userId) {
+		User fuser = userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException(userId, "user", " id "));
+		fuser.setAbout(user.getAbout());
+		User res = userRepo.save(fuser);
+		return userToDto(res);
+	}
+	
+	
+	@Override
+	public UserDto updateStatus(UserDto user, Integer userId) {
+		User fuser = userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException(userId, "user", "id"));
+		fuser.setStatus(user.getStatus());
+		User res = userRepo.save(fuser);
+		
+		return userToDto(fuser);
+	}
+	
+	
+	@Override
+	public UserDto updatePassword(UserDto user, Integer userId) {
+		User fuser = userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException(userId, "user", "id"));
+		fuser.setPassword(user.getPassword());
+		User res = userRepo.save(fuser);
+		return userToDto(fuser);
 	}
 
 	@Override
 	public UserDto getUserById(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		User fuser = userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException(userId, "user", "id"));
+		return userToDto(fuser);
 	}
 
 	@Override
-	public List<UserDto> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<User> getAllUsers() {
+		List<User> user = null ; 
+		user = userRepo.findAll();		
+		return user;
 	}
 
 	@Override
 	public void deleteUser(int userId) {
-		// TODO Auto-generated method stub
-
+		userRepo.deleteById(userId);
 	}
 
 	@Override
 	public void disableUser(int userId) {
-		// TODO Auto-generated method stub
-
+		User fuser = userRepo.findById(userId).orElseThrow(()-> new ResourceNotFoundException(userId, "user", "id"));
+		fuser.setStatus(false);
+		userRepo.save(fuser);
 	}
 	
 	
 //	Convert Dto to entity model class
 	private User dtoToUser(UserDto userDto) {
-		User user = null ;
+		User user = new User() ;
 		user.setAbout(userDto.getAbout());
 		user.setEmail(userDto.getEmail());
 		user.setId(userDto.getId());
@@ -65,7 +95,7 @@ public class UserServImp implements UserServices {
 	}
 //	convert entity to dto 
 	private UserDto userToDto(User user) {
-		UserDto udto = null;
+		UserDto udto = new UserDto();
 		udto.setAbout(user.getAbout());
 		udto.setEmail(user.getEmail());
 		udto.setId(user.getId());

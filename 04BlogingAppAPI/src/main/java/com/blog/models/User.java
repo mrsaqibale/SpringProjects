@@ -92,7 +92,7 @@ public class User {
 	@Column(length = 100, nullable = false)
 	private String password;
 	
-	@Column(length = 1000, nullable = true)
+	@Column(length = 1000, nullable = false)
 	private String about;
 	
 	@Column(nullable = false )
