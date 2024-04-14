@@ -34,6 +34,12 @@ public class UserCon {
 		return new ResponseEntity<UserDto>(user,HttpStatus.CREATED);
 	}
 	
+//	update password 
+	
+//	update about 
+	
+//	delete user
+	
 	
 }
 	
