@@ -2,6 +2,7 @@ package com.blog.servicesImp;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,10 +63,10 @@ public class UserServImp implements UserServices {
 	}
 
 	@Override
-	public List<User> getAllUsers() {
-		List<User> user = null ; 
-		user = userRepo.findAll();		
-		return user;
+	public List<UserDto> getAllUsers() {
+		List<User> users = userRepo.findAll();
+		List<UserDto> userDtos = users.stream().map(user->this.userToDto(user)).collect(Collectors.toList());
+		return userDtos;
 	}
 
 	@Override
