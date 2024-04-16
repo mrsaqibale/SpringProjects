@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,9 @@ public class UserServImp implements UserServices {
 	
 	@Autowired
 	private UserRepo userRepo;
+	
+	@Autowired
+	private ModelMapper modelMapper;
 	
 	@Override
 	public UserDto createUser(UserDto user) {
@@ -85,25 +89,27 @@ public class UserServImp implements UserServices {
 //	Convert Dto to entity model class
 	private User dtoToUser(UserDto userDto) {
 		User user = new User() ;
-		user.setAbout(userDto.getAbout());
-		user.setEmail(userDto.getEmail());
-		user.setId(userDto.getId());
-		user.setName(userDto.getName());
-		user.setPassword(userDto.getPassword());
-		user.setStatus(userDto.getStatus());
-		user.setUsername(userDto.getUsername());
+		user = modelMapper.map(userDto, User.class);
+//		user.setAbout(userDto.getAbout());
+//		user.setEmail(userDto.getEmail());
+//		user.setId(userDto.getId());
+//		user.setName(userDto.getName());
+//		user.setPassword(userDto.getPassword());
+//		user.setStatus(userDto.getStatus());
+//		user.setUsername(userDto.getUsername());
 		return user;
 	}
 //	convert entity to dto 
 	private UserDto userToDto(User user) {
 		UserDto udto = new UserDto();
-		udto.setAbout(user.getAbout());
-		udto.setEmail(user.getEmail());
-		udto.setId(user.getId());
-		udto.setName(user.getName());
-		udto.setPassword(user.getPassword());
-		udto.setStatus(user.getStatus());
-		udto.setUsername(user.getUsername());
+		udto = modelMapper.map(user, UserDto.class);
+//		udto.setAbout(user.getAbout());
+//		udto.setEmail(user.getEmail());
+//		udto.setId(user.getId());
+//		udto.setName(user.getName());
+//		udto.setPassword(user.getPassword());
+//		udto.setStatus(user.getStatus());
+//		udto.setUsername(user.getUsername());
 		return udto;
 	}
 
