@@ -1,5 +1,8 @@
 package com.blog.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class CategoryDto {
 
 	public CategoryDto() {
@@ -32,7 +35,10 @@ public class CategoryDto {
 	}
 	
 	private int cat_id;
-	
+	@NotBlank
+	@Size(min=4)
 	private String cat_title;
+	@NotBlank
+	@Size(min=10)
 	private String cat_description;
 }
