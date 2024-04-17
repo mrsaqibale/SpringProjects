@@ -36,9 +36,9 @@ public class CategoryDto {
 	
 	private int cat_id;
 	@NotBlank
-	@Size(min=4)
+	@Size(min=4, message = "Title must have 4 charecters")
 	private String cat_title;
 	@NotBlank
-	@Size(min=10)
+	@Size(min=10 , message = "Description length mush have more then 10 charecters")
 	private String cat_description;
 }

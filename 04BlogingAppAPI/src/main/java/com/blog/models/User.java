@@ -1,5 +1,8 @@
 package com.blog.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 
 import jakarta.persistence.Column;
@@ -7,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -99,4 +103,8 @@ public class User {
 	@Value("${some.key:true}")
 	private boolean status;
 	
+
+	@OneToMany(mappedBy = "user" )
+	private List<Post> post = new ArrayList();
+
 }
