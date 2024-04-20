@@ -1,7 +1,9 @@
 package com.blog.models;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -106,5 +108,9 @@ public class User {
 
 	@OneToMany(mappedBy = "user" )
 	private List<Post> post = new ArrayList();
+	
+	
+	@OneToMany(mappedBy = "user")
+	private Set<Comment> comment = new HashSet<>();
 
 }

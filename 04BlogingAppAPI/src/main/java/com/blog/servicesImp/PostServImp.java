@@ -74,6 +74,14 @@ public class PostServImp implements PostServices {
 		this.postRepo.deleteById(id);		
 	}
 
+//	get post by id
+	@Override
+	public PostDto getPostById(Integer postId) {
+		Post post = this.postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException(postId, "Post", "id"));
+		return this.modelMapper.map(post, PostDto.class);
+	}
+	
+	
 // get post by user id
 	@Override
 	public List<PostDto> getPostByUser(Integer id) {
@@ -94,11 +102,16 @@ public class PostServImp implements PostServices {
 	}
 
 
+//	Search by title in string
 	@Override
-	public List<Post> searchByTitle(String title) {
-		// TODO Auto-generated method stub
+	public List<PostDto> searchByTitle(String title) {
+		//List<Post> posts = this.postRepo.findByPost_title(title);
+		//List<PostDto> postDtos = posts.stream().map((post)-> this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
+		//return postDtos;
 		return null;
 	}
+
+
 
 
 	

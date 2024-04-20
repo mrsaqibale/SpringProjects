@@ -21,6 +21,8 @@ public interface PostServices {
 //	Get all posts
 	List<PostDto> getAllPosts();
 	
+//	get post by id
+	PostDto getPostById(Integer postId);
 	
 //	Delete post
 	void deletePost(Integer id);
@@ -32,6 +34,6 @@ public interface PostServices {
 	List<PostDto> getPostByCategory(Integer id);
 	
 //	search by title 
-	List<Post> searchByTitle(String title);
+	List<PostDto> searchByTitle(String title);
 	
 }
