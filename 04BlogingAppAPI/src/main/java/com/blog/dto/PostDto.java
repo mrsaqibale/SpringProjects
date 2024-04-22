@@ -3,6 +3,7 @@ package com.blog.dto;
 import java.util.Date;
 
 import com.blog.models.Category;
+import com.blog.models.Comment;
 import com.blog.models.User;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -68,4 +69,5 @@ public class PostDto {
 	private String post_image;
 	private Category category;
 	private User user;
+	private Comment comment;
 }

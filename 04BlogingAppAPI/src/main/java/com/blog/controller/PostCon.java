@@ -81,8 +81,9 @@ public class PostCon {
 //	get post by search of title
 	@GetMapping("/posts/search/{keys}")
 	public ResponseEntity<List<PostDto>> getMethodName(@RequestParam String keys) {
-		List<PostDto> postdtos = this.postServImp.searchByTitle(keys);
-		return new ResponseEntity<List<PostDto>>(postdtos, HttpStatus.OK);
+//		List<PostDto> postdtos = this.postServImp.searchByTitle(keys);
+//		return new ResponseEntity<List<PostDto>>(postdtos, HttpStatus.OK);
+		return null;
 	}
 	
 	
